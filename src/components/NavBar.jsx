@@ -1,5 +1,6 @@
-import React from 'react'
-import{Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
+import React from 'react';
+import{Container, Nav, Navbar, NavDropdown} from 'react-bootstrap';
+import CartWidget from './CartWidget/CartWidget';
 function NavBar() {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -17,10 +18,7 @@ function NavBar() {
         <NavDropdown.Item href="#action/3.4">Triquini</NavDropdown.Item>
       </NavDropdown>
     </Nav>
-    <Nav.Link eventKey={2} href="memes">
-        <img className='w-25' src="https://w7.pngwing.com/pngs/225/984/png-transparent-computer-icons-shopping-cart-encapsulated-postscript-shopping-cart-angle-black-shopping.png" alt="carrito" />
-
-    </Nav.Link>
+    <CartWidget />
   </Navbar.Collapse>
   </Container>
 </Navbar>
