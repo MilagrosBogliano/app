@@ -3,22 +3,34 @@ import {useState} from 'react';
 import {Button} from 'react-bootstrap';
 
 const ItemCount = ({ initial, stock, onAdd }) => {
-    const [qty, setQty] = useState(initial);
+    const [count, setCount] = useState(1);
   
-    const addProduct = (num) => {
-      setQty(qty + num);
-    };
+    function Sumar(){
+      if (count<stock) {
+          setCount(count + 1)            
+      }
+  }
+  function Restar(){
+      if (count>initial) {
+          setCount(count - 1)            
+      }
+  }
+  function onAdd(){
+      onAdd(count)
+      setCount(1)
+  }
+  
   return (
     <>
-         <Button variant="dark" onClick={() => addProduct(-1)} disabled={qty === initial ? true : null}>
+         <Button variant="dark" onClick={(Restar)}>
             -
         </Button> 
-        <span>{qty}</span>
-        <Button variant="dark" onClick={() => addProduct(+1)} disabled={qty === stock ? true : null}>
+        {count}
+        <Button variant="dark" onClick={(Sumar)}>
             +
         </Button>
-        <Button variant="dark" onClick={() => onAdd(qty)} disabled={stock === 0 ? true : null}>
-            Añadir
+        <Button variant="dark" onClick={(onAdd)}>
+          Añadir
         </Button>
     </>
   )
