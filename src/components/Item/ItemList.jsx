@@ -1,18 +1,21 @@
 import React from 'react'
-
+import { useState , useEffect } from 'react';
+import Item from './Item';
 const ItemList = () => {
     const [products, setProducts] = useState([]);
     const getProducts = new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(productList);
+        resolve(getProducts);
       }, 2000);
     });
     useEffect(() => {
-        getProductsFromDB();
+        getProducts
+        .then(resp => setProducts(resp))
+        .catch(err => console.log(err))
       }, []);
 
       return (
-        <div className="product-list-container">
+        <div>
           {products.length ? ( 
               <>
                 {products.map((product) => {
@@ -34,6 +37,7 @@ const ItemList = () => {
               <p>Cargando productos...</p>
             ) 
           }
+          
         </div>
       );
     };
