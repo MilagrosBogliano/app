@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState , useEffect } from 'react';
+import { getFetch } from '../../helpers/getFetch';
 import Item from './Item';
 const ItemList = () => {
     const [products, setProducts] = useState([]);
@@ -9,7 +10,7 @@ const ItemList = () => {
       }, 2000);
     });
     useEffect(() => {
-        getProducts
+        getFetch
         .then(resp => setProducts(resp))
         .catch(err => console.log(err))
       }, []);
