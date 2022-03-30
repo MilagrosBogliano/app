@@ -1,22 +1,30 @@
-import React from 'react'
-import ItemCount from '../ItemCount/ItemCount'
+import React from "react"
+import { Link } from "react-router-dom"
 
-const Item = ({ name, thumbnail, price, id, stock }) => {
-    const onAdd = (qty) => {
-      alert(`Has agregado ${qty} Mallas`);
-    };
-  
+
+
+function Item({ producto }) {
     return (
-      <div className="product-card">
-        <img className="product-card__image" src={thumbnail} alt="" />
-  
-        <h3 className="product-card__name">{name}</h3>
-        <span className="product-card__name">${price}</span>
-  
-        <ItemCount stock={stock} onAdd={onAdd} initial={1} />
-      </div>
-    );
-  };
+        <div className='col-md-4 p-1'>
+            <div className="card w-100 mt-5" >
+                <div className="card-header">
+                    {`${producto.name} - ${producto.categoria}`}
+                </div>
+                <div className="card-body">
+                    <img src={producto.foto} alt='' className='w-50' />
+                    {producto.price}                                                            
+                </div>
 
+                <div className="card-footer">  
+                    <Link to={`/detalle/${producto.id}`}>
+                        <button className="btn btn-outline-primary btn-block">
+                            detalle del producto
+                        </button>                                                                                                                  
+                    </Link>                                                      
+                </div>
+            </div>
+        </div> 
+    )
+}
 
 export default Item

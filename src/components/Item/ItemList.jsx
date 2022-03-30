@@ -1,46 +1,11 @@
-import React from 'react'
-import { useState , useEffect } from 'react';
-import { getFetch } from '../../helpers/getFetch';
-import Item from './Item';
-const ItemList = () => {
-    const [products, setProducts] = useState([]);
-    const getProducts = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(getProducts);
-      }, 2000);
-    });
-    useEffect(() => {
-        getFetch
-        .then(resp => setProducts(resp))
-        .catch(err => console.log(err))
-      }, []);
+import Item from "../Item/Item"
 
-      return (
-        <div>
-          {products.length ? ( 
-              <>
-                {products.map((product) => {
-                    return (
-                      <div key={product.id}>
-                        <Item
-                          name={product.name}
-                          thumbnail={product.thumbnail}
-                          price={product.price}
-                          stock={product.stock}
-                          id={product.id}
-                        />
-                      </div>
-                    );
-                  })
-                }
-              </>
-            ) : (
-              <p>Cargando productos...</p>
-            ) 
-          }
-          
-        </div>
-      );
-    };
+function ItemList({ productos }) {
+  return (
+    <>
+        {productos.map((producto)=>   <Item key={producto.id} producto={producto} /> )}
+    </>
+  )
+}
 
 export default ItemList
