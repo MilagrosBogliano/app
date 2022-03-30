@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import ItemDetail from "./ItemDetail"
+import ItemDetail from "../ItemDetail/ItemDetail"
 import { getFetch, getFetchOne } from '../../helpers/getFetch'
 
 function ItemDetailContainer() {
@@ -11,7 +11,6 @@ function ItemDetailContainer() {
     getFetchOne    
     .then(resp => setProducto(resp) )
     .catch(err => console.log(err))
-    .finally(() => setLoading(false))
 }, [])
 
   return (
