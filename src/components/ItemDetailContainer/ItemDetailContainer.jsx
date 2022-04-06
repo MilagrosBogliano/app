@@ -3,7 +3,7 @@ import ItemDetail from "../ItemDetail/ItemDetail"
 import { getFetch, getFetchOne } from '../../helpers/getFetch'
 
 function ItemDetailContainer() {
-  const [producto, setProducto] = useState( {} )
+  const [productos, setProducto] = useState( {} )
 
 
 
@@ -15,7 +15,7 @@ function ItemDetailContainer() {
 
   return (
     <>
-      <ItemDetail producto={producto} />
+      <ItemDetail productos={productos} />
     </>
   )
 }
