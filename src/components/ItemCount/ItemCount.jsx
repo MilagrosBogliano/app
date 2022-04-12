@@ -22,27 +22,28 @@ const ItemCount = ({ initial, stock, onAdd }) => {
   }
   
   return (
-    <>
-         <Button variant="dark" onClick={(Restar)}>
+    <div>
+        <Button  variant="dark"onClick={(Restar)} disabled={count === initial ? true : null}> 
             -
-        </Button> 
-        {count}
-        <Button variant="dark" onClick={(Sumar)}>
-            +
         </Button>
-        <Button variant="dark" onClick={(onAdd)}>
-          Añadir
+        <span>  {count}  </span>
+        <Button variant="dark" onClick={(Sumar)} disabled={count === stock ? true : null} > 
+            + 
         </Button>
-        : 
-        <>
-            <Link to='/'>
-                <button>Seguir Comprando</button> 
+        <Button variant="dark" onClick={(onAdd)} disabled={stock === 0? true : null}>
+            Agregar
+        </Button>
+        ) : 
+        (
+          <>
+          <Link to='/'>
+                <Button variant="dark">Seguir Comprando</Button> 
             </Link>
-            <Link to='/cart'>
-                <button>Terminar Compra</button> 
+            <Link to='../Cart/Cart.jsx'>
+                <Button variant="dark">Terminar Compra</Button> 
             </Link>
-        </>
-    </>
+          </>
+    </div>
   )
 }
 
