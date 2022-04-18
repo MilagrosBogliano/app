@@ -1,23 +1,40 @@
+import React from "react"
 import {useEffect, useState} from 'react'
+import { useParams } from "react-router-dom"
+import {doc,getDoc, getFirestore} from 'firebase/firestore'
 import ItemDetail from "../ItemDetail/ItemDetail"
-import { getFetch, getFetchOne } from '../../helpers/getFetch'
+
 
 function ItemDetailContainer() {
-  const [productos, setProducto] = useState( {} )
+    const [productos, setProducto] = useState( {} )
+    const [loading, setLoading]= useState(true)
 
+    const {prodId} = useParams()
 
-
-  useEffect(()=> {
-    getFetchOne   
-    .then(resp => setProducto(resp) )
-    .catch(err => console.log(err))
-}, [])
-
-  return (
+    useEffect(()=>{
+      const querydb = getFirestore()
+      const queryProd = doc(querydb, 'products', prodId)
+    
+      getDoc (queryProd)
+      .then(resp=> setProducto(resp.find(prod => prod.id === prodId)))
+      .catch(err => console.log(err))
+      .finally(() => setLoading(false))
+    }, [])
+    
+ 
+return(
     <>
-      <ItemDetail productos={productos} />
+    { 
+      loading ?  
+            <p>Cargando producto...</p>
+          :
+            <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+              <ItemDetail key={productos.id} product = {productos}/>
+            </div>
+    }
     </>
-  )
+)
+
 }
 
 export default ItemDetailContainer

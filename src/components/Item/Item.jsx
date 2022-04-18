@@ -1,5 +1,5 @@
-import React from "react"
 import { Link } from "react-router-dom"
+import {Button} from 'react-bootstrap'
 
 
 
@@ -12,14 +12,15 @@ function Item({ producto }) {
                 </div>
                 <div className="card-body">
                     <img src={producto.foto} alt='' className='w-50' />
-                    {producto.price}                                                            
+                    <br/>
+                   {producto.price}
                 </div>
 
                 <div className="card-footer">  
                     <Link to={`/detalle/${producto.id}`}>
-                        <button className="btn btn-outline-primary btn-block">
-                            detalle del producto
-                        </button>                                                                                                                  
+                        <Button>
+                            Detalle del producto
+                        </Button>                                                                                                                  
                     </Link>                                                      
                 </div>
             </div>
