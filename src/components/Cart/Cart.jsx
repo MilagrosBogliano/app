@@ -49,8 +49,8 @@ function Cart() {
     return (
         <div>
             {cartList.map(productos => <li key={productos.id} > nombre: {productos.name} - cantidad: {productos.cantidad} </li>)}
-            <button className="btn btn-outline-warning" onClick={removeCart}>Vaciar Carrito</button>
-            <button className="btn btn-outline-warning" onClick={generarOrden}>Generar orden</button>
+            <Button className="btn btn-outline-warning" onClick={removeCart}>Vaciar Carrito</Button>
+            <Button className="btn btn-outline-warning" onClick={generarOrden}>Generar orden</Button>
         </div>
     )
 }
