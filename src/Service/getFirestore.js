@@ -13,7 +13,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export function getFirestore(){    
-    return firebase.firestore(app)
+    return app
 }
 
 

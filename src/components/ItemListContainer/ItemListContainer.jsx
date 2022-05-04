@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemList from '../Item/ItemList'
-import { collection, doc, getDoc, getDocs, getFirestore } from 'firebase/firestore'
+import { collection, getDocs, getFirestore } from 'firebase/firestore'
 import {Button} from 'react-bootstrap'
+
 function ItemListContainer({greeting}) {
 
   const [productos, setProductos] = useState([])
@@ -10,31 +11,16 @@ function ItemListContainer({greeting}) {
   const [bool, setBool] = useState(true)
 
   const { categoriaId } = useParams()
-
-  useEffect(()=>{
-    const querydb = getFirestore() 
-    const queryProd = doc(querydb, 'productos', '4jNlWgWGlGSO7WGASegG')
-  getDoc(queryProd)
-   .then(resp => setProductos(  { id: resp.id, ...resp.data() }  ))
-}, [])
-    useEffect(()=>{
+useEffect(()=>{
     const querydb = getFirestore() 
     const queryCollection = collection(querydb, 'productos')
-    getDocs(queryCollection)
-    .then(resp => setProductos( resp.docs.map(item => ( { id: item.id, ...item.data() } ) ) ))
-    .catch(err => console.log(err))
-    .finally(() => setLoading(false)) 
-    }, [])
 
-    useEffect(()=>{
-    const querydb = getFirestore() 
-    const queryCollection = collection(querydb, 'productos')
     getDocs(queryCollection)
-    .then(resp => setProductos( resp.docs.map(item => ( { id: item.id, ...item.data() } ) ) ))
+    .then(resp => setProductos( resp.docs.map(item => ( { id: resp.id, ... resp.data() } ) ) ))
     .catch(err => console.log(err))
     .finally(() => setLoading(false)) 
-    }, [])
-  
+     }, [])
+console.log(productos)
   
   const handleClick=(e)=>{
     e.preventDefault() 
